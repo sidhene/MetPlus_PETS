@@ -1,10 +1,36 @@
 %h2 Your Information
-.row
-"Hello #{@jobseeker.first_name}"
+%div{:class => 'container'}
+  %div{class: 'div_align_left', id: 'bold_text'}
+    First Name:
+    %br
+    Last Name:
+    %br
+    Status:
+    %br
+    Last Login:
+    %br
+    Case Manager:
+    %br
+    Job Developer:
+  %div{class: 'div_align_left'}
+    = @jobseeker.first_name
+    %br
+    = @jobseeker.last_name
+    %br
+    = JobSeekerStatus.find(@jobseeker.job_seeker_status_id).value
+    %br
+    = @jobseeker.last_sign_in_at
+    %br
+    - if @jobseeker.agency_people.empty?
+      None assigned
+    %br
+    - if @jobseeker.agency_people.empty?
+      None assigned
 
 
 %h2 Your Applications
 
 %h2 Job Opportunities - Best Match
+= render partial: 'jobs/compact_list', object: @jobs
 
 %h2 Job Opportunities - New
