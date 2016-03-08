@@ -13,8 +13,6 @@
         %li{:class => 'menu-item'}
           - if current_user_agency_admin?
             = link_to('Admin', agency_admin_home_path)
-          - elsif current_user.actable_type == 'JobSeeker'
-            = link_to('JobSeeker Homepage', job_seekers_home_path(current_user.actable_id))
 
       %ul{:class => 'nav navbar-nav navbar-right'}
         - if !user_signed_in?

@@ -39,9 +39,11 @@ class JobSeekersController < ApplicationController
        render 'edit'
     end
   end
-  
+
   def home
     @jobseeker = JobSeeker.find(params[:id])
+#    @newjobs = Job.where(created_at: > @jobseeker.last_sign_in_at)
+    @newjobs = Job.where(created_at: (Time.now.midnight - 1.days)..Time.now)
   end
 
   def index

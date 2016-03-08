@@ -11,18 +11,16 @@
         %td
           %strong Posted
     %tbody
-      - if @jobs.empty?
+      - if @newjobs.empty?
         There are no jobs available
       - else
-        @jobs.each do |job|
-        %tr
-          %td
-            = link_to "#{job.title}", job_path(job)
+        - @newjobs.each do |job|
+          %tr
             %td
-              = job.description
-            %td
-              = Company
-            %td
-              = "#{time_ago_in_words(job.created_at, )} ago"
-  = will_paginate @branches, param_name: 'branches_page', |
-                     params: {data_type: 'branches'}      |
+              = link_to "#{job.title}", job_path(job)
+              %td
+                = job.description
+              %td
+                = Company
+              %td
+                = "#{time_ago_in_words(job.created_at, )} ago"
