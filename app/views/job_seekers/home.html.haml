@@ -43,7 +43,9 @@
 %i This feature has not been built yet
 
 %h3 Job Opportunities - Best Match
-= render partial: 'jobs/compact_list', locals: {jobs: @newjobs}
+%div
+  = render partial: 'jobs/compact_list', locals: {jobs: @past_week}
 
 %h3 Job Opportunities - New
-= render partial: 'jobs/compact_list', locals: {jobs: @newjobs}
+%div
+  = render partial: 'jobs/compact_list', locals: {jobs: @newjobs}
