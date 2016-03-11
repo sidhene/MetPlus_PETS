@@ -42,8 +42,9 @@ class JobSeekersController < ApplicationController
 
   def home
     @jobseeker = JobSeeker.find(params[:id])
-#    @newjobs = Job.where(created_at: > @jobseeker.last_sign_in_at)
-    @newjobs = Job.where(created_at: (Time.now.midnight - 1.days)..Time.now)
+#    @newjobs = Job.new_jobs(@jobseeker.last_sign_in_at).paginate(:page => params[:page], :per_page => 5)
+    @newjobs = Job.new_jobs(Time.now - 1.week).paginate(:page => params[:page], :per_page => 5)
+
   end
 
   def index

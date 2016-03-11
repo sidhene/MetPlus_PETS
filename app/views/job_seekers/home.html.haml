@@ -1,4 +1,4 @@
-%h2 Your Information
+%h3 Your Information
 %div{:class => 'container'}
   %div{class: 'div_align_left', id: 'bold_text'}
     First Name:
@@ -22,15 +22,28 @@
     = @jobseeker.last_sign_in_at
     %br
     - if @jobseeker.agency_people.empty?
-      None assigned
+      %i None assigned
+    - else
+      = @jobseeker.case_manager
     %br
     - if @jobseeker.agency_people.empty?
-      None assigned
+      %i None assigned
+    - else
+      = @jobseeker.job_developer
+
+  %div{class: 'div_align_bottom'}
+  %br
+  %br
+  %br
+  %br
+    = link_to 'Update your information', edit_job_seeker_path, class: 'btn btn-primary'
 
 
-%h2 Your Applications
+%h3 Your Applications
+%i This feature has not been built yet
 
-%h2 Job Opportunities - Best Match
-= render partial: 'jobs/compact_list', object: @jobs
+%h3 Job Opportunities - Best Match
+= render partial: 'jobs/compact_list', locals: {jobs: @newjobs}
 
-%h2 Job Opportunities - New
+%h3 Job Opportunities - New
+= render partial: 'jobs/compact_list', locals: {jobs: @newjobs}
