@@ -29,9 +29,30 @@ describe JobSeeker, type: :model do
     		expect(JobSeeker.acting_as? String).to be false
     	end
   	end
-
-    describe "Relationships" do 
-
-    end
+    #
+    # describe "Relationships" do
+    #   let(:agency) { FactoryGirl.create(:agency) }
+    #   let(:cm_person)   do
+    #     $person = FactoryGirl.build(:agency_person, agency: agency)
+    #     $person.agency_roles << FactoryGirl.create(:agency_role,
+    #                                     role: AgencyRole::ROLE[:CM])
+    #     $person.save
+    #     $person
+    #   end
+    #   let(:jd_person)   do
+    #     $person = FactoryGirl.build(:agency_person, agency: agency)
+    #     $person.agency_roles << FactoryGirl.create(:agency_role,
+    #                                     role: AgencyRole::ROLE[:JD])
+    #     $person.save
+    #     $person
+    #   end
+    #   let(:job_seeker) do
+    #     $person = FactoryGirl.build(:job_seeker)
+    #     @user = FactoryGirl.create(:user)
+    #     @jobseekerstatus = FactoryGirl.create(:job_seeker_status)
+    #     jobseeker_hash = FactoryGirl.attributes_for(:job_seeker).merge(FactoryGirl.attributes_for(:user)).merge(FactoryGirl.attributes_for(:job_seeker_status))
+    #     $person.agency_people << :cm_person, :jd_person
+    #   end
+    # end
 
 end

@@ -162,6 +162,20 @@ merge(FactoryGirl.attributes_for(:job_seeker_status,value:'Employedlooking')),id
       expect(response).to have_http_status(:success)
     end
 
+    it "returns a list of jobs posted since last login" do
+
+    end
+
+    it "returns the agency relations" do
+      context "without relations" do
+
+      end
+      context "with relations" do
+
+      end
+    end
+
+
   end
 
   describe "GET #index" do
