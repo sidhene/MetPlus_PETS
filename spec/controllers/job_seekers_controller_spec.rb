@@ -102,7 +102,7 @@ merge(FactoryGirl.attributes_for(:job_seeker_status,value:'Employedlooking')),id
      it 'sets a yearofbirth' do
         expect(@jobseeker.year_of_birth).to eq ("1980")
      end
-     it 'sets a  value' do
+     it 'sets a jobseeker status' do
         expect(@jobseekerstatus.value) == ("Employedlooking")
      end
      it 'sets flash message' do
