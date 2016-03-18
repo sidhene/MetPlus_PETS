@@ -7,13 +7,18 @@ class JobSeeker < ActiveRecord::Base
   has_many   :agency_relations
   has_many   :agency_people, through: :agency_relations
 
-<<<<<<< HEAD
-  validates_presence_of :year_of_birth #,:resume
-=======
   validates_presence_of :year_of_birth, :job_seeker_status_id #,:resume
->>>>>>> fc3473be4a4ec96e5593b902a227777d9d5e6fe3
   validates  :year_of_birth, :year_of_birth => true
 
+    def case_manager=(case_manager)
+      debugger
+        self.agency_relations <<
+            AgencyRelation.create(
+               agency_role_id: AgencyRole.find_by_role(AgencyRole::ROLE[:CM]),
+                               agency_person_id: case_manager.id)
+        self.save
+        self
+    end
     def case_manager
       find_agency_person_with_role(AgencyRole::ROLE[:CM])
     end
