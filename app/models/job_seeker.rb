@@ -10,7 +10,7 @@ class JobSeeker < ActiveRecord::Base
   validates_presence_of :year_of_birth #,:resume
   validates  :year_of_birth, :year_of_birth => true
 
-  def case_manager
+    def case_manager
       find_agency_person_with_role(AgencyRole::ROLE[:CM])
     end
 

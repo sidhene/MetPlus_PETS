@@ -21,15 +21,15 @@
     %br
     = @jobseeker.last_sign_in_at
     %br
-    - if @jobseeker.agency_people.empty?
+    - if @jobseeker.case_manager.nil?
       %i None assigned
     - else
-      = @jobseeker.case_manager
+    = @jobseeker.case_manager.full_name
     %br
-    - if @jobseeker.agency_people.empty?
+    - if @jobseeker.job_developer.nil?
       %i None assigned
     - else
-      = @jobseeker.job_developer
+      = @jobseeker.job_developer.full_name
 
   %div{class: 'div_align_bottom'}
   %br
