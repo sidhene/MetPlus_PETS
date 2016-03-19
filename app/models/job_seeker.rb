@@ -10,31 +10,16 @@ class JobSeeker < ActiveRecord::Base
   validates_presence_of :year_of_birth, :job_seeker_status_id #,:resume
   validates  :year_of_birth, :year_of_birth => true
 
-    def case_manager=(case_manager)
-      debugger
-        self.agency_relations <<
-            AgencyRelation.create(
-               agency_role_id: AgencyRole.find_by_role(AgencyRole::ROLE[:CM]),
-                               agency_person_id: case_manager.id)
-        self.save
-        self
+    def case_manager=(cm_person)
+      AgencyRelation.assign_case_manager_to_job_seeker(self, cm_person)
     end
+
     def case_manager
-      find_agency_person_with_role(AgencyRole::ROLE[:CM])
+      AgencyRelation.case_manager_for_job_seeker(self)
     end
 
     def job_developer
-      find_agency_person_with_role(AgencyRole::ROLE[:JD])
+      AgencyRelation.job_developer_for_job_seeker(self)
     end
 
-    private
-
-    def find_agency_person_with_role(role_id)
-      if not agency_relations.empty?
-        ap_relation = agency_relations.where(agency_role: AgencyRole.
-                  find_by_role(role_id))[0] # get first if multiple
-        return ap_relation.agency_person if ap_relation
-      end
-      nil # return nil if agency person with role is not found
-    end
 end

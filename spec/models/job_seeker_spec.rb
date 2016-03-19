@@ -33,7 +33,11 @@ describe JobSeeker, type: :model do
 
     describe "Relationships" do
       let(:agency) { FactoryGirl.create(:agency) }
-      let(:cm_person)   do
+      # Use 'let!' to create cm_person.  If not, the return value of
+      #   $person.case_manager = cm_person
+      #   when job_seeker is created will be the cm_person.
+      # Creating the cm_person before refencing fixes that problem
+      let!(:cm_person)   do
         $person = FactoryGirl.build(:agency_person, agency: agency)
         $person.agency_roles << FactoryGirl.create(:agency_role,
                                         role: AgencyRole::ROLE[:CM])
@@ -49,8 +53,7 @@ describe JobSeeker, type: :model do
       end
       let(:job_seeker) do
         $person = FactoryGirl.create(:job_seeker)
-        @jobseekerstatus = FactoryGirl.create(:job_seeker_status)
-        $person.case_manager= cm_person
+        $person.case_manager = cm_person
         $person
       end
 
