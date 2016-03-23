@@ -162,18 +162,25 @@ merge(FactoryGirl.attributes_for(:job_seeker_status,value:'Employedlooking')),id
       expect(response).to have_http_status(:success)
     end
 
-    it "returns a list of jobs posted since last login" do
-
+    it "returns jobs posted since last login" do
+      @newjob = FactoryGirl.create(:job)
+      @newjob.assign_attributes(created_at: Time.now)
+      @jobseeker.assign_attributes(last_sign_in_at: (Time.now - 1.week))
+      expect(Job.new_jobs(@jobseeker.last_sign_in_at)).to include(@newjob)
     end
 
-    it "returns the agency relations" do
-      context "without relations" do
-
-      end
-      context "with relations" do
-
-      end
-    end
+    # it "returns the agency relations" do
+    #
+    #   @some_agency = FactoryGirl.create(:agency)
+    #   debugger
+    #
+    #   @some_case_manager = FactoryGirl.create(:agency_person, agency: @some_agency)
+    #   @some_case_manager.agency_roles << FactoryGirl.create(:agency_role,
+    #                                   role: AgencyRole::ROLE[:CM])
+    #   @some_case_manager.agency_relations.case_manager_for_job_seeker(@jobseeker)
+    #   expect(@jobseeker.case_manager).to eq(@some_case_manager)
+    #
+    # end
 
 
   end
