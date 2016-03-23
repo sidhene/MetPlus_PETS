@@ -26,7 +26,7 @@ RSpec.describe AgencyRelation, type: :model do
     it { is_expected.to validate_presence_of :agency_role }
   end
 
-  describe 'Job Skill' do
+  describe 'AgencyPerson <> JobSeeker relation' do
     let(:person)     { FactoryGirl.create(:agency_person) }
     let(:job_seeker) { FactoryGirl.create(:job_seeker) }
     let(:role)       { FactoryGirl.create(:agency_role) }
@@ -42,6 +42,25 @@ RSpec.describe AgencyRelation, type: :model do
       expect(relation.errors[:agency_person]).to include("can't be blank")
       expect(relation.errors[:agency_role]).to include("can't be blank")
       expect(relation.errors[:job_seeker]).to include("can't be blank")
+    end
+
+    context 'Job Developer and Case Manager Relationships' do
+      let(:case_manager)
+
+      it 'sets the Job Developer for a Job Seeker' do
+      end
+
+      it 'sets the Case Manager for a Job Seeker' do
+      end
+
+      it 'finds the Job Developer for a Job Seeker' do
+      end
+
+      it 'finds the Case Manager for a Job Seeker' do
+      end
+
+      it 'finds the Job Seeker relationship for a given ' do
+      end
     end
   end
 end
