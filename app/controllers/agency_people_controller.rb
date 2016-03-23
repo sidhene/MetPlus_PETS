@@ -8,6 +8,10 @@ class AgencyPeopleController < ApplicationController
     @agency_person = AgencyPerson.find(params[:id])
   end
 
+  def jd_home
+    @job_developer = AgencyPerson.find(params[:id])
+  end
+
   def update
     @agency_person = AgencyPerson.find(params[:id])
     model_params = agency_person_params

@@ -18,6 +18,22 @@ RSpec.describe AgencyPeopleController, type: :controller do
     end
   end
 
+  describe "GET #jd_home" do
+    let(:person)   { FactoryGirl.create(:agency_person) }
+
+    before(:each) { get :jd_home, id: person }
+
+    it 'assigns @job_developer for view' do
+      expect(assigns(:agency_person)).to eq person
+    end
+    it 'renders jd_home template' do
+      expect(response).to render_template('jd_home')
+    end
+    it "returns http success" do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe "GET #edit" do
     let(:person)  { FactoryGirl.create(:agency_person) }
 

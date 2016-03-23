@@ -1,0 +1,17 @@
+%h3 Job Developer Home
+=@job_developer.first_name
+
+%h3 Your Job Seekers
+- if @job_developer.agency_relations.in_role_of(:JD).empty?
+  %i There are no job seekers assigned to you yet.
+- else
+  %div{:class => 'row'}
+    %div{:class => 'panel panel-default'}
+      %ul
+        - @job_developer.agency_relations.in_role_of(:JD).each do |relation|
+          %li
+            = relation.job_seeker.full_name
+
+
+%h3 Job Seekers Without a Job Developer
+%i This feature has not been built yet
