@@ -44,36 +44,36 @@ RSpec.describe AgencyRelation, type: :model do
       expect(relation.errors[:job_seeker]).to include("can't be blank")
     end
 
-    context 'Job Developer and Case Manager Relationships' do
-      let(:cm_person)   do
-        $person = FactoryGirl.build(:agency_person, agency: agency)
-        $person.agency_roles << FactoryGirl.create(:agency_role,
-                                        role: AgencyRole::ROLE[:CM])
-        $person.save
-        $person
-      end
-      let(:jd_person)   do
-        $person = FactoryGirl.build(:agency_person, agency: agency)
-        $person.agency_roles << FactoryGirl.create(:agency_role,
-                                        role: AgencyRole::ROLE[:JD])
-        $person.save
-        $person
-      end
-
-      it 'sets the Job Developer for a Job Seeker' do
-      end
-
-      it 'sets the Case Manager for a Job Seeker' do
-      end
-
-      it 'finds the Job Developer for a Job Seeker' do
-      end
-
-      it 'finds the Case Manager for a Job Seeker' do
-      end
-
-      it 'finds the Job Seeker relationship for a given ' do
-      end
+    # context 'Job Developer and Case Manager Relationships' do
+    #   let(:cm_person)   do
+    #     $person = FactoryGirl.build(:agency_person, agency: agency)
+    #     $person.agency_roles << FactoryGirl.create(:agency_role,
+    #                                     role: AgencyRole::ROLE[:CM])
+    #     $person.save
+    #     $person
+    #   end
+    #   let(:jd_person)   do
+    #     $person = FactoryGirl.build(:agency_person, agency: agency)
+    #     $person.agency_roles << FactoryGirl.create(:agency_role,
+    #                                     role: AgencyRole::ROLE[:JD])
+    #     $person.save
+    #     $person
+    #   end
+    #
+    #   it 'sets the Job Developer for a Job Seeker' do
+    #   end
+    #
+    #   it 'sets the Case Manager for a Job Seeker' do
+    #   end
+    #
+    #   it 'finds the Job Developer for a Job Seeker' do
+    #   end
+    #
+    #   it 'finds the Case Manager for a Job Seeker' do
+    #   end
+    #
+    #   it 'finds the Job Seeker relationship for a given ' do
+    #   end
     end
   end
 end
