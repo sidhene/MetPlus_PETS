@@ -168,21 +168,6 @@ merge(FactoryGirl.attributes_for(:job_seeker_status,value:'Employedlooking')),id
       @jobseeker.assign_attributes(last_sign_in_at: (Time.now - 1.week))
       expect(Job.new_jobs(@jobseeker.last_sign_in_at)).to include(@newjob)
     end
-
-    # it "returns the agency relations" do
-    #
-    #   @some_agency = FactoryGirl.create(:agency)
-    #   debugger
-    #
-    #   @some_case_manager = FactoryGirl.create(:agency_person, agency: @some_agency)
-    #   @some_case_manager.agency_roles << FactoryGirl.create(:agency_role,
-    #                                   role: AgencyRole::ROLE[:CM])
-    #   @some_case_manager.agency_relations.case_manager_for_job_seeker(@jobseeker)
-    #   expect(@jobseeker.case_manager).to eq(@some_case_manager)
-    #
-    # end
-
-
   end
 
   describe "GET #index" do
