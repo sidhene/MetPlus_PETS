@@ -29,7 +29,6 @@
 
 
 %h3 Job Seekers Without a Job Developer
-%i This feature has not been built yet
 %br
   .col-sm-9
     %table.table.table-hover
@@ -47,5 +46,6 @@
             %td
               = relation.full_name
             %td
-              = relation.job_seeker.last_sign_in_at
+              = relation.job_seeker_status_id
             %td
+              = relation.last_sign_in_at
