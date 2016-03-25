@@ -15,3 +15,7 @@
 
 %h3 Job Seekers Without a Job Developer
 %i This feature has not been built yet
+%br
+  - eligible_job_seekers_for_role(@job_developer, :JD).each do |jobseeker|
+    %li
+    = jobseeker.full_name
