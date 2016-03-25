@@ -5,17 +5,47 @@
 - if @job_developer.agency_relations.in_role_of(:JD).empty?
   %i There are no job seekers assigned to you yet.
 - else
-  %div{:class => 'row'}
-    %div{:class => 'panel panel-default'}
-      %ul
+  .col-sm-9
+    %table.table.table-hover
+      %thead
+        %tr
+          %td
+            %strong Name
+          %td
+            %strong Status
+          %td
+            %strong Last Login
+      %tbody
         - @job_developer.agency_relations.in_role_of(:JD).each do |relation|
-          %li
-            = relation.job_seeker.full_name
+          @jobseeker = relation.job_seeker
+          %tr
+            %td
+              = link_to "#{@jobseeker.full_name}", job_seeker_path(show)
+              %td
+                = JobSeekerStatus.find(@jobseeker.job_seeker_status_id).value
+              %td
+                = "#{time_ago_in_words(@jobseeker.last_sign_in_at)} ago"
+
 
 
 %h3 Job Seekers Without a Job Developer
 %i This feature has not been built yet
 %br
-  - eligible_job_seekers_for_role(@job_developer, :JD).each do |jobseeker|
-    %li
-    = jobseeker.full_name
+  .col-sm-9
+    %table.table.table-hover
+      %thead
+        %tr
+          %td
+            %strong Name
+          %td
+            %strong Status
+          %td
+            %strong Last Login
+      %tbody
+        - eligible_job_seekers_for_role(@job_developer, :JD).each do |relation|
+          %tr
+            %td
+              = relation.full_name
+            %td
+              = relation.job_seeker.last_sign_in_at
+            %td
