@@ -45,7 +45,7 @@ RSpec.describe AgencyRelation, type: :model do
     end
 
     context 'Job Developer and Case Manager Relationships' do
-      let!(:cm_person)   do
+      let(:cm_person)   do
         $person = FactoryGirl.build(:agency_person, agency: agency)
         $person.agency_roles << FactoryGirl.create(:agency_role,
                                         role: AgencyRole::ROLE[:CM])
