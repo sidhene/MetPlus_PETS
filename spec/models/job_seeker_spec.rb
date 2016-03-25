@@ -31,35 +31,5 @@ describe JobSeeker, type: :model do
     	end
   	end
 
-    describe "Relationships" do
-      let(:agency) { FactoryGirl.create(:agency) }
-      # Use 'let!' to create cm_person.  If not, the return value of
-      #   $person.case_manager = cm_person
-      #   when job_seeker is created will be the cm_person.
-      # Creating the cm_person before refencing fixes that problem
-      let!(:cm_person)   do
-        $person = FactoryGirl.build(:agency_person, agency: agency)
-        $person.agency_roles << FactoryGirl.create(:agency_role,
-                                        role: AgencyRole::ROLE[:CM])
-        $person.save
-        $person
-      end
-      let(:jd_person)   do
-        $person = FactoryGirl.build(:agency_person, agency: agency)
-        $person.agency_roles << FactoryGirl.create(:agency_role,
-                                        role: AgencyRole::ROLE[:JD])
-        $person.save
-        $person
-      end
-      let(:job_seeker) do
-        $person = FactoryGirl.create(:job_seeker)
-        $person.case_manager = cm_person
-        $person
-      end
-
-      it "returns the case manager" do
-        expect(job_seeker.case_manager).to eq cm_person
-      end
-    end
 
 end
