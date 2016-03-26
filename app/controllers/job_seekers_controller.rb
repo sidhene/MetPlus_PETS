@@ -55,6 +55,12 @@ class JobSeekersController < ApplicationController
     redirect_to root_path
   end
 
+  def employment_status
+    @jobseeker = JobSeeker.find(params[:id])
+    @employment_status = JobSeekerStatus.find(@jobseeker.job_seeker_status_id).value
+  end
+
+
   private
    def jobseeker_params
      params.require(:job_seeker).permit(:first_name,

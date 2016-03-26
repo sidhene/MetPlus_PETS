@@ -5,27 +5,6 @@
 - if @job_developer.agency_relations.in_role_of(:JD).empty?
   %i There are no job seekers assigned to you yet.
 - else
-  .col-sm-9
-    %table.table.table-hover
-      %thead
-        %tr
-          %td
-            %strong Name
-          %td
-            %strong Status
-          %td
-            %strong Last Login
-      %tbody
-        - @job_developer.agency_relations.in_role_of(:JD).each do |relation|
-          @jobseeker = relation.job_seeker
-          %tr
-            %td
-              = link_to "#{@jobseeker.full_name}", job_seeker_path(show)
-              %td
-                = JobSeekerStatus.find(@jobseeker.job_seeker_status_id).value
-              %td
-                = "#{time_ago_in_words(@jobseeker.last_sign_in_at)} ago"
-
 
 
 %h3 Job Seekers Without a Job Developer
@@ -41,11 +20,11 @@
           %td
             %strong Last Login
       %tbody
-        - eligible_job_seekers_for_role(@job_developer, :JD).each do |relation|
+        - eligible_job_seekers_for_role(@job_developer, :JD).each do |js|
           %tr
             %td
-              = relation.full_name
+              = js.full_name
             %td
-              = relation.job_seeker_status_id
+              = js.employment_status
             %td
-              = relation.last_sign_in_at
+              = js.last_sign_in_at

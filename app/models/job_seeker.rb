@@ -11,4 +11,6 @@ class JobSeeker < ActiveRecord::Base
   validates  :year_of_birth, :year_of_birth => true
 
 
+
+
 end
