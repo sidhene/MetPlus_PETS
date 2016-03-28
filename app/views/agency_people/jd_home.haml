@@ -20,11 +20,11 @@
           %td
             %strong Last Login
       %tbody
-        - eligible_job_seekers_for_role(@job_developer, :JD).each do |js|
+        - job_seekers_without_job_developer.each do |js|
           %tr
             %td
               = js.full_name
             %td
-              = js.employment_status
+              = js.job_seeker_status.value
             %td
               = js.last_sign_in_at

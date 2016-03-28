@@ -24,7 +24,7 @@ RSpec.describe AgencyPeopleController, type: :controller do
     before(:each) { get :jd_home, id: person }
 
     it 'assigns @job_developer for view' do
-      expect(assigns(:agency_person)).to eq person
+      expect(assigns(:job_developer)).to eq person
     end
     it 'renders jd_home template' do
       expect(response).to render_template('jd_home')
