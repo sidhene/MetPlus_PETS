@@ -25,6 +25,9 @@
             %td
               = js.full_name
             %td
-              = js.job_seeker_status.value
+              = js.job_seeker_status
             %td
-              = js.last_sign_in_at
+              - if js.last_sign_in_at.nil?
+                %never
+              - else
+                = js.last_sign_in_at
