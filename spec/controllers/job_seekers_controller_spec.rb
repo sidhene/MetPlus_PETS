@@ -184,8 +184,11 @@ merge(FactoryGirl.attributes_for(:job_seeker_status,value:'Employedlooking')),id
     it "returns jobs posted since last login" do
       @newjob = FactoryGirl.create(:job)
       @newjob.assign_attributes(created_at: Time.now)
+      @oldjob = FactoryGirl.create(:job)
+      @oldjob.update_attributes(created_at: Time.now - 2.weeks)
       @jobseeker.assign_attributes(last_sign_in_at: (Time.now - 1.week))
       expect(Job.new_jobs(@jobseeker.last_sign_in_at)).to include(@newjob)
+      expect(Job.new_jobs(@jobseeker.last_sign_in_at)).not_to include(@oldjob)
     end
   end
 
