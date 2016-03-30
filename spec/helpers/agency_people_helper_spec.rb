@@ -101,12 +101,5 @@ RSpec.describe AgencyPeopleHelper, type: :helper do
                           to match_array [bob, charles, dave]
     end
 
-    it 'returns a case manager for a given job seeker' do
-      expect(adam.case_manager).to eq(cm_person)
-    end
-    it 'returns a job developer for a given job seeker' do
-      expect(dave.job_developer).to eq(jd_person)
-    end
-
   end
 end

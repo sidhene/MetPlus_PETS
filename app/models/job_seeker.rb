@@ -10,17 +10,17 @@ class JobSeeker < ActiveRecord::Base
   validates_presence_of :year_of_birth, :job_seeker_status_id #,:resume
   validates  :year_of_birth, :year_of_birth => true
 
-  def case_manager=(cm_person)
-    AgencyRelation.assign_case_manager_to_job_seeker(self, cm_person)
-  end
+  # def case_manager=(cm_person)
+  #   AgencyRelation.assign_case_manager_to_job_seeker(self, cm_person)
+  # end
 
-  def case_manager
-    AgencyRelation.case_manager_for_job_seeker(self)
-  end
-
-  def job_developer
-    AgencyRelation.job_developer_for_job_seeker(self)
-  end
+  # def case_manager
+  #   AgencyRelation.case_manager_for_job_seeker(self)
+  # end
+  #
+  # def job_developer
+  #   AgencyRelation.job_developer_for_job_seeker(self)
+  # end
 
 
   def case_manager
@@ -32,11 +32,11 @@ class JobSeeker < ActiveRecord::Base
   end
 
   def assign_case_manager(case_manager)
-    assign_agency_person(job_seeker, case_manager, :CM)
+    assign_agency_person(case_manager, :CM)
   end
 
   def assign_job_developer(job_developer)
-    assign_agency_person(job_seeker, job_developer, :JD)
+    assign_agency_person(job_developer, :JD)
   end
 
   def assign_agency_person(agency_person, role_key)
