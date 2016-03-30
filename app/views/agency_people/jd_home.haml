@@ -28,6 +28,6 @@
               = js.job_seeker_status
             %td
               - if js.last_sign_in_at.nil?
-                %never
+                %i never
               - else
                 = js.last_sign_in_at
