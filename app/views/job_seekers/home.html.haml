@@ -11,7 +11,8 @@
     = JobSeekerStatus.find(@jobseeker.job_seeker_status_id).value
     %br
     %b Last Login:
-    = @jobseeker.last_sign_in_at.strftime('%x')
+    - unless @jobseeker.last_sign_in_at.nil?
+      = @jobseeker.last_sign_in_at.strftime('%x')
 
   %div{class: 'div_align_left'}
     %b Case Manager:
