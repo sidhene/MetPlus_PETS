@@ -10,6 +10,8 @@
           %a{:href => '#', id: 'about'} About
         %li{:class => 'menu-item'}
           %a{:href => '#', id: 'contact'} Contact
+        - if current_user_job_developer?
+          = link_to('Home', jd_home_agency_person_path(current_user))
         - if current_user_agency_admin?
           %li{:class => 'menu-item dropdown'}
             %a{href: '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown',

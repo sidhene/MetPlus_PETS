@@ -1,0 +1,34 @@
+%h3 Job Developer Home
+=@job_developer.full_name
+
+%h3 Your Job Seekers
+- if @job_developer.agency_relations.in_role_of(:JD).empty?
+  %i There are no job seekers assigned to you yet.
+- else
+
+
+%h3 Job Seekers Without a Job Developer
+%br
+  .col-sm-9
+    %table.table.table-hover
+      %thead
+        %tr
+          %td
+            %strong Name
+          %td
+            %strong Status
+          %td
+            %strong Last Login
+      %tbody
+        - job_seekers_without_job_developer.each do |js|
+          %tr
+            %td
+              = js.full_name
+            %td
+              - unless js.job_seeker_status.nil?
+                = js.job_seeker_status.value
+            %td
+              - if js.last_sign_in_at.nil?
+                %i never
+              - else
+                = js.last_sign_in_at
