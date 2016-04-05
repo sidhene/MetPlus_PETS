@@ -10,6 +10,7 @@ class AgencyPeopleController < ApplicationController
 
   def jd_home
     @job_developer = AgencyPerson.find(params[:id])
+    @job_seekers_without_a_jd = @job_developer.agency_relations.in_role(:JD).page(params[:jobseekers_page]).per_page(10)
   end
 
   def update

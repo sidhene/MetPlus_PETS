@@ -86,19 +86,22 @@ RSpec.describe AgencyPeopleHelper, type: :helper do
                                           job_seeker: dave)
       jd_person.save!
     end
-    it 'returns job seekers for job developer role' do
+    it 'returns job seekers without a job developer' do
       expect(eligible_job_seekers_for_role(cm_person, :JD)).
                           to match_array [adam, bob, charles]
-
-      expect(eligible_job_seekers_for_role(jd_person, :JD)).
-                          to match_array [adam, bob, charles, dave]
     end
-    it 'returns job seekers for case manager role' do
-      expect(eligible_job_seekers_for_role(cm_person, :CM)).
-                          to match_array [adam, bob, dave, charles]
-
+    it 'returns job seekers without a case manager' do
       expect(eligible_job_seekers_for_role(jd_person, :CM)).
                           to match_array [bob, charles, dave]
+    end
+    it 'returns job seekers for a given case manager' do
+      expect(cm_person.as_cm_job_seekers).
+                          to include(adam)
+    end
+
+    it 'returns job seekers for a given job developer' do
+      expect(jd_person.as_jd_job_seekers).
+                          to include(dave)
     end
 
   end

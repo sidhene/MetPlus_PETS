@@ -2,9 +2,11 @@
 =@job_developer.full_name
 
 %h3 Your Job Seekers
-- if @job_developer.agency_relations.in_role_of(:JD).empty?
+- if @job_developer.as_jd_job_seeker_ids == nil
   %i There are no job seekers assigned to you yet.
 - else
+  = render partial: 'jobseekers', locals: {@job_seekers: @job_seekers_without_a_jd, jobseekers_page: 'js_no_JD'}
+.clearfix
 
 
 %h3 Job Seekers Without a Job Developer

@@ -9,6 +9,10 @@ class AgencyRelation < ActiveRecord::Base
     where(agency_role_id: AgencyRole.find_by_role(AgencyRole::ROLE[role_key]).id)
   end
 
+  def self.in_role role_key
+    AgencyRelation.where(agency_role_id: AgencyRole.find_by_role(AgencyRole::ROLE[role_key]).id).collect(&:job_seeker)
+  end
+
   # Helper methods for associating job seekers with agency people
   # These business rules are enforced:
   # 1) A job developer can have only one case manager

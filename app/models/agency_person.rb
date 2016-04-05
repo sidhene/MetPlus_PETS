@@ -90,4 +90,20 @@ class AgencyPerson < ActiveRecord::Base
     seekers
   end
 
+  def as_jd_job_seekers
+    seekers = []
+    agency_relations.in_role_of(:JD).each do |relation|
+      seekers << relation.job_seeker
+    end
+    seekers
+  end
+  
+  def as_cm_job_seekers
+    seekers = []
+    agency_relations.in_role_of(:CM).each do |relation|
+      seekers << relation.job_seeker
+    end
+    seekers
+  end
+
 end
