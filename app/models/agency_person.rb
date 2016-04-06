@@ -22,6 +22,8 @@ class AgencyPerson < ActiveRecord::Base
 
   # validate :job_seeker_assigned_to_case_manager
 
+  scope :job_developer_of,-> (job_developer) {AgencyRelation.job_developer.pluck(:job_seeker_id)}
+
   def not_removing_sole_agency_admin
     # This validation is to prevent the removal of a sole agency admin - which
     # would result in no AgencyPerson able to perform the admin role.
@@ -97,7 +99,7 @@ class AgencyPerson < ActiveRecord::Base
     end
     seekers
   end
-  
+
   def as_cm_job_seekers
     seekers = []
     agency_relations.in_role_of(:CM).each do |relation|
