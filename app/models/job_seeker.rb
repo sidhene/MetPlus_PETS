@@ -21,7 +21,9 @@ class JobSeeker < ActiveRecord::Base
   # def job_developer
   #   AgencyRelation.job_developer_for_job_seeker(self)
   # end
-
+  def job_developer_of
+    AgencyPerson.job_developer_of self
+  end
 
   def case_manager
     find_agency_person(:CM)

@@ -5,7 +5,7 @@
 - if @job_developer.as_jd_job_seeker_ids == nil
   %i There are no job seekers assigned to you yet.
 - else
-  = render partial: 'jobseekers', locals: {@job_seekers: @job_seekers_without_a_jd, jobseekers_page: 'js_no_JD'}
+  = render partial: 'jobseekers', locals: {@job_seekers: @js_without_jd}
 .clearfix
 
 
