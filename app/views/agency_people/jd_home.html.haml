@@ -22,7 +22,7 @@
           %td
             %strong Last Login
       %tbody
-        - job_seekers_without_job_developer.each do |js|
+        - @js_without_jd.each do |js|
           %tr
             %td
               = js.full_name

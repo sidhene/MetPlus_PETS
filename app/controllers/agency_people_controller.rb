@@ -11,7 +11,8 @@ class AgencyPeopleController < ApplicationController
   def jd_home
     @job_developer = AgencyPerson.find(params[:id])
 #    @job_seekers_without_a_jd = @job_developer.agency_relations.in_role(:JD).page(params[:jobseekers_page]).per_page(10)
-    @job_seekers_without_a_jd = JobSeeker.paginate(:page=>1, :per_page=>2).find(@job_seeker.job_developer)
+#    @job_seekers_without_a_jd = JobSeeker.paginate(:page=>1, :per_page=>2).find(@job_seeker.job_developer)
+    @js_without_jd = JobSeeker.where.not(id: AgencyRelation.js_ids_with_a_jd)
 
 
   end

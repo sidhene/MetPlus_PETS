@@ -13,7 +13,9 @@ class AgencyRelation < ActiveRecord::Base
     AgencyRelation.where(agency_role_id: AgencyRole.find_by_role(AgencyRole::ROLE[role_key]).id).collect(&:job_seeker)
   end
 
-  scope :job_developer, -> {where(agency_role_id: AgencyRole.find_by_role(AgencyRole::ROLE[:JD]).id)}
+  # scope :job_developer, -> {where(agency_role_id: AgencyRole.find_by_role(AgencyRole::ROLE[:JD]).id)}
+  scope :js_ids_with_a_jd = AgencyRelation.in_role_of(:JD).pluck(:job_seeker_id)
+
 
   # Helper methods for associating job seekers with agency people
   # These business rules are enforced:
