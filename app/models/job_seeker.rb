@@ -10,17 +10,10 @@ class JobSeeker < ActiveRecord::Base
   validates_presence_of :year_of_birth, :job_seeker_status_id #,:resume
   validates  :year_of_birth, :year_of_birth => true
 
-  # def case_manager=(cm_person)
-  #   AgencyRelation.assign_case_manager_to_job_seeker(self, cm_person)
-  # end
+  def self.js_without_jd
+    where("job_seekers.id not in (?)", AgencyRelation.in_role_of(:JD).pluck(:job_seeker_id)).order("users.last_name")
+  end
 
-  # def case_manager
-  #   AgencyRelation.case_manager_for_job_seeker(self)
-  # end
-  #
-  # def job_developer
-  #   AgencyRelation.job_developer_for_job_seeker(self)
-  # end
   def job_developer_of
     AgencyPerson.job_developer_of self
   end
@@ -40,6 +33,12 @@ class JobSeeker < ActiveRecord::Base
   def assign_job_developer(job_developer)
     assign_agency_person(job_developer, :JD)
   end
+
+
+    # Helper methods for associating job seekers with agency people
+    # These business rules are enforced:
+    # 1) A job developer can have only one case manager
+    # 2) A job developer can have only one job developer ('primary' JD)
 
   def assign_agency_person(agency_person, role_key)
     raise 'Not a job seeker'   if not self.is_a? JobSeeker
