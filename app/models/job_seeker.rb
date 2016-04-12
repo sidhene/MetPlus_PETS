@@ -14,6 +14,11 @@ class JobSeeker < ActiveRecord::Base
     where("job_seekers.id not in (?)", AgencyRelation.in_role_of(:JD).pluck(:job_seeker_id)).order("users.last_name")
   end
 
+  def self.your_jobseekers_jd(job_developer)
+    where(:id => AgencyRelation.in_role_of(:JD).where(:agency_person => job_developer).pluck(:job_seeker_id)).order("users.last_name")
+
+  end
+
   def job_developer_of
     AgencyPerson.job_developer_of self
   end
